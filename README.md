@@ -10,7 +10,7 @@ bKash payment gateway integration for Tutor LMS. This plugin enables one-time co
 ✅ IPN (Instant Payment Notification) integration\
 ✅ Secure payment processing with transaction verification\
 ✅ WordPress HTTP API for secure external communications\
-✅ Internationalization (i18n) support for translations\
+✅ Internationalization (i18n) support for translations
 
 ## Requirements
 
