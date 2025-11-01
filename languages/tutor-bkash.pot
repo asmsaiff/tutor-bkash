@@ -1,0 +1,156 @@
+# Copyright (C) 2025 S. Saif
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Tutor bKash 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tutor-bkash\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-11-01T03:15:13+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: tutor-bkash\n"
+
+#. Plugin Name of the plugin
+#: tutor-bkash.php
+msgid "Tutor bKash"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: tutor-bkash.php
+msgid "https://github.com/"
+msgstr ""
+
+#. Description of the plugin
+#: tutor-bkash.php
+msgid "bKash payment gateway integration for Tutor LMS (Free & Pro). Accept online payments directly within your Tutor LMS-powered site using bKash Tokenized Checkout."
+msgstr ""
+
+#. Author of the plugin
+#: tutor-bkash.php
+msgid "S. Saif"
+msgstr ""
+
+#. Author URI of the plugin
+#: tutor-bkash.php
+msgid "https://saif.im"
+msgstr ""
+
+#: integration/BkashConfig.php:116
+msgid "Unable to load bKash gateway settings"
+msgstr ""
+
+#: integration/Init.php:99
+msgid "bKash"
+msgstr ""
+
+#: integration/Init.php:108
+msgid "Environment"
+msgstr ""
+
+#: integration/Init.php:110
+msgid "Sandbox"
+msgstr ""
+
+#: integration/Init.php:111
+msgid "Live"
+msgstr ""
+
+#: integration/Init.php:118
+msgid "Merchant Username"
+msgstr ""
+
+#: integration/Init.php:120
+msgid "Your bKash merchant username"
+msgstr ""
+
+#: integration/Init.php:125
+msgid "Merchant Password"
+msgstr ""
+
+#: integration/Init.php:127
+msgid "Your bKash merchant password"
+msgstr ""
+
+#: integration/Init.php:132
+msgid "App Key"
+msgstr ""
+
+#: integration/Init.php:134
+msgid "Your bKash App Key"
+msgstr ""
+
+#: integration/Init.php:139
+msgid "App Secret"
+msgstr ""
+
+#: integration/Init.php:141
+msgid "Your bKash App Secret"
+msgstr ""
+
+#: integration/Init.php:146
+msgid "Webhook URL"
+msgstr ""
+
+#: integration/Init.php:148
+msgid "Copy this URL and configure it in your bKash merchant panel"
+msgstr ""
+
+#: payments/Bkash.php:148
+msgid "Order ID is required for payment processing"
+msgstr ""
+
+#: payments/Bkash.php:152
+msgid "Currency information is required for payment processing"
+msgstr ""
+
+#: payments/Bkash.php:156
+msgid "Customer email is required for payment processing"
+msgstr ""
+
+#: payments/Bkash.php:167
+msgid "Payment amount must be greater than zero"
+msgstr ""
+
+#: payments/Bkash.php:187
+msgid "Customer"
+msgstr ""
+
+#: payments/Bkash.php:257
+msgid "Payment URL not found in response"
+msgstr ""
+
+#: payments/Bkash.php:260
+msgid "Unknown error occurred"
+msgstr ""
+
+#: payments/Bkash.php:261
+msgid "bKash Payment Failed: "
+msgstr ""
+
+#: payments/Bkash.php:367
+msgid "No transaction data received. IPN endpoint should only receive POST requests from bKash."
+msgstr ""
+
+#: payments/Bkash.php:373
+msgid "Invalid transaction data: Missing payment ID."
+msgstr ""
+
+#: payments/Bkash.php:402
+msgid "Payment failed"
+msgstr ""
+
+#: payments/Bkash.php:426
+msgid "Payment verification pending"
+msgstr ""
+
+#: payments/Bkash.php:435
+msgid "Transaction validation with bKash API failed."
+msgstr ""
+
+#: payments/Bkash.php:445
+msgid "Error processing payment: "
+msgstr ""

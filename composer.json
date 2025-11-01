@@ -1,0 +1,22 @@
+{
+    "version": "1.0.0",
+    "name": "asmsaiff/tutor-bkash",
+    "description": "bKash payment gateway integration for Tutor LMS",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "S. Saif",
+            "email": "asmsaif15@gmail.com",
+            "homepage": "https://github.com/asmsaiff",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://github.com/asmsaiff/tutor-bkash",
+    "autoload": {
+        "psr-4": {
+            "Payments\\Bkash\\": "payments/",
+            "TutorBkash\\": "integration/"
+        }
+    }
+}
