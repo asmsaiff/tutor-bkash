@@ -1,11 +1,11 @@
 <?php
     /**
      * Plugin Name:     Tutor bKash
-     * Plugin URI:      https://github.com/
+     * Plugin URI:      https://github.com/asmsaiff/tutor-bkash
      * Description:     bKash payment gateway integration for Tutor LMS (Free & Pro). Accept online payments directly within your Tutor LMS-powered site using bKash Tokenized Checkout.
      * Version:         1.0.0
      * Author:          S. Saif
-     * Author URI:      https://saif.im
+     * Author URI:      https://github.com/asmsaiff
      * License:         GPLv2 or later
      * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
      * Text Domain:     tutor-bkash

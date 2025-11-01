@@ -6,7 +6,7 @@
  * This class provides the necessary integration points for bKash payment processing
  * within the Tutor e-commerce ecosystem.
  *
- * @author Developer
+ * @author S. Saif <https://github.com/asmsaiff>
  * @since 1.0.0
  */
 

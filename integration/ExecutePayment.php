@@ -5,6 +5,7 @@
  * Handles payment execution after bKash redirects back to the site.
  * Processes payment execution with bKash API and notifies Tutor LMS webhook.
  *
+ * @author S. Saif <https://github.com/asmsaiff>
  * @package TutorBkash
  * @since 1.0.0
  */
@@ -122,13 +123,13 @@ class ExecutePayment {
             // Notify Tutor LMS webhook to update order status
             if ( ! empty( $webhook_url ) && ! empty( $order_id ) ) {
                 // Do NOT modify webhook URL - Tutor LMS expects the gateway identifier in the path
-                // The webhook URL from PaymentUrlsTrait is already in correct format: 
+                // The webhook URL from PaymentUrlsTrait is already in correct format:
                 // /wp-json/tutor/v1/ecommerce-webhook/bkash
-                
+
                 // Extract transaction status from bKash execution response
                 $transaction_status = isset( $decoded['transactionStatus'] ) ? sanitize_text_field( $decoded['transactionStatus'] ) : '';
                 $amount            = isset( $decoded['amount'] ) ? sanitize_text_field( $decoded['amount'] ) : '';
-                
+
                 // Prepare payload matching what Tutor LMS webhook handler expects
                 // Include all necessary data from bKash execution response
                 $payload = array(
@@ -138,7 +139,7 @@ class ExecutePayment {
                     'statusCode'        => $decoded['statusCode'],
                     'amount'            => $amount,
                 );
-                
+
                 // Add any additional fields from bKash response that might be needed
                 if ( isset( $decoded['trxID'] ) ) {
                     $payload['trxID'] = sanitize_text_field( $decoded['trxID'] );

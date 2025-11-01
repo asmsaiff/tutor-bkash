@@ -13,7 +13,7 @@
  * - Support for sandbox and live environments
  * - Comprehensive error handling and logging
  *
- * @author Developer
+ * @author S. Saif<https://github.com/asmsaiff>
  * @since 1.0.0
  */
 
@@ -376,7 +376,7 @@ class Bkash extends BasePayment {
 
 			// Sanitize payment ID
 			$paymentID = sanitize_text_field($post_data['paymentID']);
-			
+
 			// Sanitize order ID if present
 			$order_id = isset($post_data['order_id']) ? absint($post_data['order_id']) : 0;
 
@@ -386,7 +386,7 @@ class Bkash extends BasePayment {
 			if ($paymentStatus && isset($paymentStatus['statusCode']) && $paymentStatus['statusCode'] === '0000') {
 				// Use transactionStatus from query response (most reliable)
 				$transaction = isset($paymentStatus['transactionStatus']) ? sanitize_text_field($paymentStatus['transactionStatus']) : '';
-				
+
 				// If transactionStatus is in payload and query response doesn't have it, use payload value
 				if (empty($transaction) && isset($post_data['transactionStatus'])) {
 					$transaction = sanitize_text_field($post_data['transactionStatus']);
@@ -418,13 +418,13 @@ class Bkash extends BasePayment {
 					// Use payload data as fallback if query fails but payload indicates success
 					$transaction = sanitize_text_field($post_data['transactionStatus']);
 					$payment_status = $this->mapPaymentStatus($transaction);
-					
+
 					$returnData->id = $order_id;
 					$returnData->payment_status = $payment_status;
 					$returnData->transaction_id = $paymentID;
 					$returnData->payment_payload = wp_json_encode($post_data);
 					$returnData->payment_error_reason = $payment_status === 'paid' ? '' : esc_html__('Payment verification pending', 'tutor-bkash');
-					
+
 					$amount = isset($post_data['amount']) ? floatval($post_data['amount']) : 0.0;
 					$returnData->fees = 0;
 					$returnData->earnings = number_format($amount, 2, '.', '');
