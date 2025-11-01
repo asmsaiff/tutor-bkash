@@ -1,4 +1,11 @@
 <?php
+    /**
+     * RewriteRules class
+     *
+     * @author S. Saif <https://github.com/asmsaiff>
+     * @since 1.0.0
+     */
+
     namespace TutorBkash;
 
     class RewriteRules {

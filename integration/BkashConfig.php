@@ -2,7 +2,7 @@
 /**
  * bKash Configuration class
  *
- * @author Developer
+ * @author S. Saif <https://github.com/asmsaiff>
  * @since 1.0.0
  */
 
