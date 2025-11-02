@@ -21,7 +21,7 @@ Tutor bKash integrates bKash with Tutor LMS, enabling secure course payments via
 
 = Features =
 
-* Supports both one-time and subscription course payments
+* Supports both one-time and subscription course payments (Subscription payment will require to initiate and authorize the transaction due to tokenized checkout limitations)
 * Uses bKash Tokenized Checkout for secure transactions
 * Includes Sandbox and Live modes for testing and real payments
 * IPN integration for automatic payment and order updates

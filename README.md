@@ -4,7 +4,7 @@ bKash payment gateway integration for Tutor LMS. This plugin enables one-time co
 
 ## Features
 
-✅ One-time and subscription payments for course purchases\
+✅ One-time and subscription payments for course purchases (Subscription payment will require to initiate and authorize the transaction due to tokenized checkout limitations)\
 ✅ Tokenized Checkout for secure payment processing\
 ✅ Sandbox and Live environment support\
 ✅ IPN (Instant Payment Notification) integration\
