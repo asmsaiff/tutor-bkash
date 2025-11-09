@@ -1,5 +1,5 @@
 === Tutor bKash ===
-Contributors: saifullahsiddique
+Contributors: saifullahsiddique - S. Saif
 Tags: tutor, lms, bkash, payment, gateway
 Requires at least: 5.3
 Tested up to: 6.8
@@ -21,7 +21,7 @@ Tutor bKash integrates bKash with Tutor LMS, enabling secure course payments via
 
 = Features =
 
-* Supports both one-time and subscription course payments (Subscription payment will require to initiate and authorize the transaction due to tokenized checkout limitations)
+* Supports both one-time and subscription course payments
 * Uses bKash Tokenized Checkout for secure transactions
 * Includes Sandbox and Live modes for testing and real payments
 * IPN integration for automatic payment and order updates
@@ -136,6 +136,16 @@ Transaction fees depend on your bKash merchant agreement. Contact bKash for pric
 = Can I process refunds? =
 
 Refunds must be processed manually through the bKash merchant panel. The plugin doesn't handle automatic refunds.
+
+== Disclaimer ==
+
+This plugin is **not affiliated with, maintained, endorsed, or sponsored** by Themeum, Tutor LMS, or bKash.
+
+- "Tutor" and "Tutor LMS" are trademarks of Themeum.
+- "bKash" is a trademark of bKash Limited.
+
+These names are used solely to indicate compatibility.
+The plugin is developed and maintained independently by the open-source community.
 
 == Changelog ==
 
