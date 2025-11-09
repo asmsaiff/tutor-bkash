@@ -16,16 +16,16 @@
     defined('ABSPATH') || exit;
 
     // Activation and deactivation hooks
-    function plugin_activation() {
+    function tutor_bkash_plugin_activation() {
         TutorBkash\RewriteRules::custom_rewrite_rule();
         flush_rewrite_rules();
     }
-    register_activation_hook(__FILE__, 'plugin_activation');
+    register_activation_hook(__FILE__, 'tutor_bkash_plugin_activation');
 
-    function plugin_deactivation() {
+    function tutor_bkash_plugin_deactivation() {
         flush_rewrite_rules();
     }
-    register_deactivation_hook(__FILE__, 'plugin_deactivation');
+    register_deactivation_hook(__FILE__, 'tutor_bkash_plugin_deactivation');
 
     /**
      * Main Plugin Class
@@ -109,8 +109,8 @@
         private function init_hooks(): void {
             add_action('plugins_loaded', [$this, 'init_gateway'], 100);
             add_action('template_redirect', ['TutorBkash\\ExecutePayment', 'handle_payment_execution']);
-            add_action('init', ['TutorBkash\\RewriteRules', 'custom_rewrite_rule']);
-            add_filter('query_vars', ['TutorBkash\\RewriteRules', 'custom_query_vars']);
+            add_action('init', ['TutorBkash\\RewriteRules', 'tutor_bkash_custom_rewrite_rule']);
+            add_filter('query_vars', ['TutorBkash\\RewriteRules', 'tutor_bkash_custom_query_vars']);
         }
 
         /**
