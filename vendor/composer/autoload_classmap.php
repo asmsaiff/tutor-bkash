@@ -7,10 +7,10 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'FinersPay\\BkashConfig' => $baseDir . '/integration/BkashConfig.php',
+    'FinersPay\\BkashGateway' => $baseDir . '/integration/BkashGateway.php',
+    'FinersPay\\ExecutePayment' => $baseDir . '/integration/ExecutePayment.php',
+    'FinersPay\\Init' => $baseDir . '/integration/Init.php',
+    'FinersPay\\RewriteRules' => $baseDir . '/integration/RewriteRules.php',
     'Payments\\Bkash\\Bkash' => $baseDir . '/payments/Bkash.php',
-    'TutorBkash\\BkashConfig' => $baseDir . '/integration/BkashConfig.php',
-    'TutorBkash\\BkashGateway' => $baseDir . '/integration/BkashGateway.php',
-    'TutorBkash\\ExecutePayment' => $baseDir . '/integration/ExecutePayment.php',
-    'TutorBkash\\Init' => $baseDir . '/integration/Init.php',
-    'TutorBkash\\RewriteRules' => $baseDir . '/integration/RewriteRules.php',
 );

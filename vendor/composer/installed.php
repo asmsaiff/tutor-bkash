@@ -1,6 +1,6 @@
 <?php return array(
     'root' => array(
-        'name' => 'themeum/tutor-bkash',
+        'name' => 'asmsaiff/finerspay',
         'pretty_version' => '1.0.0',
         'version' => '1.0.0.0',
         'reference' => null,
@@ -10,7 +10,7 @@
         'dev' => true,
     ),
     'versions' => array(
-        'themeum/tutor-bkash' => array(
+        'asmsaiff/finerspay' => array(
             'pretty_version' => '1.0.0',
             'version' => '1.0.0.0',
             'reference' => null,

@@ -6,11 +6,11 @@
  * Processes payment execution with bKash API and notifies Tutor LMS webhook.
  *
  * @author S. Saif <https://github.com/asmsaiff>
- * @package TutorBkash
+ * @package FinersPay
  * @since 1.0.0
  */
 
-namespace TutorBkash;
+namespace FinersPay;
 
 class ExecutePayment {
     /**
@@ -21,7 +21,7 @@ class ExecutePayment {
      *
      * @since 1.0.0
      */
-    public static function handle_payment_execution() {
+    public static function finerspay_handle_payment_execution() {
         global $wp_query;
 
         // Start session if not already started

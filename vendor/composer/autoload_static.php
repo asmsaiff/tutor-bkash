@@ -4,46 +4,46 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb66feec4c0e36c1ea9f0097ea18540a9
+class ComposerStaticInitcda5fbc31559e196109d968d59fc7101
 {
     public static $prefixLengthsPsr4 = array (
-        'T' => 
-        array (
-            'TutorBkash\\' => 11,
-        ),
         'P' => 
         array (
             'Payments\\Bkash\\' => 15,
         ),
+        'F' => 
+        array (
+            'FinersPay\\' => 10,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'TutorBkash\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/integration',
-        ),
         'Payments\\Bkash\\' => 
         array (
             0 => __DIR__ . '/../..' . '/payments',
+        ),
+        'FinersPay\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/integration',
         ),
     );
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'FinersPay\\BkashConfig' => __DIR__ . '/../..' . '/integration/BkashConfig.php',
+        'FinersPay\\BkashGateway' => __DIR__ . '/../..' . '/integration/BkashGateway.php',
+        'FinersPay\\ExecutePayment' => __DIR__ . '/../..' . '/integration/ExecutePayment.php',
+        'FinersPay\\Init' => __DIR__ . '/../..' . '/integration/Init.php',
+        'FinersPay\\RewriteRules' => __DIR__ . '/../..' . '/integration/RewriteRules.php',
         'Payments\\Bkash\\Bkash' => __DIR__ . '/../..' . '/payments/Bkash.php',
-        'TutorBkash\\BkashConfig' => __DIR__ . '/../..' . '/integration/BkashConfig.php',
-        'TutorBkash\\BkashGateway' => __DIR__ . '/../..' . '/integration/BkashGateway.php',
-        'TutorBkash\\ExecutePayment' => __DIR__ . '/../..' . '/integration/ExecutePayment.php',
-        'TutorBkash\\Init' => __DIR__ . '/../..' . '/integration/Init.php',
-        'TutorBkash\\RewriteRules' => __DIR__ . '/../..' . '/integration/RewriteRules.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb66feec4c0e36c1ea9f0097ea18540a9::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb66feec4c0e36c1ea9f0097ea18540a9::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitb66feec4c0e36c1ea9f0097ea18540a9::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcda5fbc31559e196109d968d59fc7101::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcda5fbc31559e196109d968d59fc7101::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitcda5fbc31559e196109d968d59fc7101::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -6,6 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'TutorBkash\\' => array($baseDir . '/integration'),
     'Payments\\Bkash\\' => array($baseDir . '/payments'),
+    'FinersPay\\' => array($baseDir . '/integration'),
 );

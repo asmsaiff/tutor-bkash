@@ -1,6 +1,6 @@
 {
     "version": "1.0.0",
-    "name": "asmsaiff/tutor-bkash",
+    "name": "asmsaiff/finerspay",
     "description": "bKash payment gateway integration for Tutor LMS",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",
@@ -9,14 +9,14 @@
             "name": "S. Saif",
             "email": "asmsaif15@gmail.com",
             "homepage": "https://github.com/asmsaiff",
-            "role": "Developer"
+            "role": "S. Saif <https://github.com/asmsaiff>"
         }
     ],
-    "homepage": "https://github.com/asmsaiff/tutor-bkash",
+    "homepage": "https://github.com/asmsaiff/finerspay",
     "autoload": {
         "psr-4": {
             "Payments\\Bkash\\": "payments/",
-            "TutorBkash\\": "integration/"
+            "FinersPay\\": "integration/"
         }
     }
 }

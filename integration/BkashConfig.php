@@ -6,7 +6,7 @@
  * @since 1.0.0
  */
 
-namespace TutorBkash;
+namespace FinersPay;
 
 use Tutor\Ecommerce\Settings;
 use Ollyo\PaymentHub\Core\Payment\BaseConfig;
@@ -42,7 +42,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	 */
 	use PaymentUrlsTrait;
 
-	/**
+    /**
 	 * Stores the environment setting for the payment gateway, such as 'sandbox' or 'live'.
 	 *
 	 * @since 1.0.0
@@ -120,9 +120,49 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 
 		foreach ($config_keys as $key) {
 			if ('webhook_url' !== $key) {
-				$this->$key = $this->get_field_value($settings, $key);
+				// Settings are stored in a nested 'fields' array by Tutor
+				// First try the nested format, then fall back to flat format
+				if (isset($settings['fields']) && is_array($settings['fields'])) {
+					// New format: settings nested under 'fields' key
+					$this->$key = $this->extract_field_value($settings['fields'], $key);
+				} else {
+					// Legacy/flat format: settings directly in array
+					$this->$key = $this->get_field_value($settings, $key);
+				}
 			}
 		}
+	}
+
+	/**
+	 * Extract field value from Tutor's nested fields array format.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array  $fields The fields array from Tutor settings
+	 * @param string $key    The field key to extract
+	 * @return string The field value or empty string if not found
+	 */
+	private function extract_field_value(array $fields, string $key): string {
+		// Fields may be an array of associative arrays: [['name' => 'key', 'value' => 'val'], ...]
+		// or a flat associative array: ['key' => 'val']
+
+		// First check if it's a flat array
+		if (isset($fields[$key])) {
+			return is_array($fields[$key]) && isset($fields[$key]['value'])
+				? (string) $fields[$key]['value']
+				: (string) $fields[$key];
+		}
+
+		// Check if it's an array of [['name' => key, 'value' => val], ...]
+		if (is_array($fields)) {
+			foreach ($fields as $field) {
+				if (is_array($field) && isset($field['name']) && $field['name'] === $key && isset($field['value'])) {
+					return (string) $field['value'];
+				}
+			}
+		}
+
+		return '';
 	}
 
 	/**
@@ -221,7 +261,6 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 		parent::createConfig();
 
 		$config = [
-			'mode' => $this->getMode(),
 			'username' => $this->getUsername(),
 			'password' => $this->getPassword(),
 			'app_key' => $this->getAppKey(),

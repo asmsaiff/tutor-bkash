@@ -13,7 +13,7 @@
  * - Support for sandbox and live environments
  * - Comprehensive error handling and logging
  *
- * @author S. Saif<https://github.com/asmsaiff>
+ * @author S. Saif <https://github.com/asmsaiff>
  * @since 1.0.0
  */
 
@@ -112,6 +112,7 @@ class Bkash extends BasePayment {
 				'api_domain' => $this->config->get('api_domain'),
 			];
 		} catch (Throwable $error) {
+
 			throw $error;
 		}
 	}
@@ -145,15 +146,15 @@ class Bkash extends BasePayment {
 	private function prepareData(object $data): array {
 		// Validate required data
 		if (!isset($data->order_id) || empty($data->order_id)) {
-			throw new \InvalidArgumentException(esc_html__('Order ID is required for payment processing', 'tutor-bkash'));
+			throw new \InvalidArgumentException(esc_html__('Order ID is required for payment processing', 'finerspay'));
 		}
 
 		if (!isset($data->currency) || !isset($data->currency->code)) {
-			throw new \InvalidArgumentException(esc_html__('Currency information is required for payment processing', 'tutor-bkash'));
+			throw new \InvalidArgumentException(esc_html__('Currency information is required for payment processing', 'finerspay'));
 		}
 
 		if (!isset($data->customer) || !isset($data->customer->email)) {
-			throw new \InvalidArgumentException(esc_html__('Customer email is required for payment processing', 'tutor-bkash'));
+			throw new \InvalidArgumentException(esc_html__('Customer email is required for payment processing', 'finerspay'));
 		}
 
 		// Generate unique transaction ID
@@ -164,7 +165,7 @@ class Bkash extends BasePayment {
 
 		// Validate amount
 		if ($total_price <= 0) {
-			throw new \InvalidArgumentException(esc_html__('Payment amount must be greater than zero', 'tutor-bkash'));
+			throw new \InvalidArgumentException(esc_html__('Payment amount must be greater than zero', 'finerspay'));
 		}
 
 		// Format amounts for bKash
@@ -184,7 +185,7 @@ class Bkash extends BasePayment {
 
 			// Customer information
 			'customer' => [
-				'name' => $data->customer->name ?? esc_html__('Customer', 'tutor-bkash'),
+				'name' => $data->customer->name ?? esc_html__('Customer', 'finerspay'),
 				'email' => $data->customer->email,
 				'phone' => $data->customer->phone_number ?? '',
 			],
@@ -203,14 +204,27 @@ class Bkash extends BasePayment {
 	 */
 	public function createPayment(): void {
 		try {
+			// Validate configuration before proceeding
+			if (!$this->check()) {
+				$missingFields = [];
+				if (empty($this->config->get('username'))) $missingFields[] = 'Username';
+				if (empty($this->config->get('password'))) $missingFields[] = 'Password';
+				if (empty($this->config->get('app_key'))) $missingFields[] = 'App Key';
+				if (empty($this->config->get('app_secret'))) $missingFields[] = 'App Secret';
+
+				$errorMsg = wp_strip_all_tags(esc_html__('bKash Payment Failed: Missing configuration - ', 'finerspay') . ' ' . implode(', ', array_map('wp_strip_all_tags', $missingFields)));
+				throw new ErrorException($errorMsg);
+			}
+
 			$paymentData = $this->getData();
 
 			// First, get grant token
 			$this->accessToken = $this->getGrantToken();
 
-			// if (!$this->accessToken) {
-			// 	throw new ErrorException(esc_html__('Failed to obtain bKash access token', 'tutor-bkash'));
-			// }
+			if (empty($this->accessToken)) {
+				$errorMsg = wp_strip_all_tags(esc_html__('bKash Payment Failed: Unable to obtain access token', 'finerspay'));
+				throw new ErrorException($errorMsg);
+			}
 
 			// Make API call to bKash to create payment
 			$apiUrl = $this->client['api_domain'] . self::API_PAYMENT_CREATE_ENDPOINT;
@@ -254,15 +268,18 @@ class Bkash extends BasePayment {
 					header("Location: " . $response['bkashURL']);
 					exit;
 				} else {
-					throw new ErrorException(esc_html__('Payment URL not found in response', 'tutor-bkash'));
+					$errorMsg = wp_strip_all_tags(esc_html__('Payment URL not found in response', 'finerspay'));
+					throw new ErrorException($errorMsg);
 				}
 			} else {
-				$errorMessage = $response['statusMessage'] ?? esc_html__('Unknown error occurred', 'tutor-bkash');
-				throw new ErrorException(esc_html__('bKash Payment Failed: ', 'tutor-bkash') . $errorMessage);
+				$statusMessage = isset($response['statusMessage']) ? $response['statusMessage'] : esc_html__('Unknown error occurred', 'finerspay');
+				$statusCode = isset($response['statusCode']) ? $response['statusCode'] : 'N/A';
+				$errorMessage = wp_strip_all_tags(esc_html__('bKash Payment Failed: ', 'finerspay') . ' ' . wp_strip_all_tags($statusMessage) . ' (Code: ' . wp_strip_all_tags($statusCode) . ')');
+				throw new ErrorException($errorMessage);
 			}
 
 		} catch (RequestException $error) {
-			throw new ErrorException(esc_html($error->getMessage()));
+			echo esc_html( $e->getMessage() );
 		}
 	}
 
@@ -272,11 +289,11 @@ class Bkash extends BasePayment {
 	 * @return string|null Access token or null on failure
 	 */
 	private function getGrantToken(): ?string {
-		$apiUrl = $this->client['api_domain'] . self::API_TOKEN_ENDPOINT;
+			$apiUrl = $this->client['api_domain'] . self::API_TOKEN_ENDPOINT;
 
-		// Base64 encode credentials
-		$credentials = base64_encode($this->client['username'] . ':' . $this->client['password']);
-		$basicAuth = base64_encode($this->client['app_key'] . ':' . $this->client['app_secret']);
+			// Base64 encode credentials
+			$credentials = base64_encode($this->client['username'] . ':' . $this->client['password']);
+			$basicAuth = base64_encode($this->client['app_key'] . ':' . $this->client['app_secret']);
 
         $response = $this->callBkashApi($apiUrl, [
             'app_key' => $this->client['app_key'],
@@ -289,9 +306,13 @@ class Bkash extends BasePayment {
             'Content-Type' => 'application/json',
         ]);
 
+
+
 		if ($response && isset($response['id_token'])) {
+
 			return $response['id_token'];
 		}
+
 
 		return null;
 	}
@@ -325,6 +346,7 @@ class Bkash extends BasePayment {
 		$headers = array_merge($defaultHeaders, $headers);
 
 
+
 		$args = [
 			'method' => 'POST',
 			'timeout' => 60,
@@ -339,12 +361,20 @@ class Bkash extends BasePayment {
 		// Make the request
 		$response = wp_remote_post($url, $args);
 
+		// Check for WordPress errors
+		if (is_wp_error($response)) {
+
+			return ['statusCode' => '9999', 'statusMessage' => $response->get_error_message()];
+		}
+
 		// Get response code and body
 		$http_code = wp_remote_retrieve_response_code($response);
 		$body = wp_remote_retrieve_body($response);
         $decoded = json_decode($body, true);
 
-        return $decoded;
+
+
+        return is_array($decoded) ? $decoded : ['statusCode' => '9999', 'statusMessage' => 'Invalid JSON response', 'raw_body' => $body];
 	}
 
 	/**
@@ -364,13 +394,13 @@ class Bkash extends BasePayment {
 			// Validate that we have POST data
 			if (empty($post_data) || !is_array($post_data)) {
 				$returnData->payment_status = 'failed';
-				$returnData->payment_error_reason = esc_html__('No transaction data received. IPN endpoint should only receive POST requests from bKash.', 'tutor-bkash');
+				$returnData->payment_error_reason = esc_html__('No transaction data received. IPN endpoint should only receive POST requests from bKash.', 'finerspay');
 				return $returnData;
 			}
 
 			if (empty($post_data['paymentID'])) {
 				$returnData->payment_status = 'failed';
-				$returnData->payment_error_reason = esc_html__('Invalid transaction data: Missing payment ID.', 'tutor-bkash');
+				$returnData->payment_error_reason = esc_html__('Invalid transaction data: Missing payment ID.', 'finerspay');
 				return $returnData;
 			}
 
@@ -399,7 +429,7 @@ class Bkash extends BasePayment {
 				$returnData->payment_status = $payment_status;
 				$returnData->transaction_id = isset($paymentStatus['paymentID']) ? sanitize_text_field($paymentStatus['paymentID']) : $paymentID;
 				$returnData->payment_payload = wp_json_encode($paymentStatus);
-				$returnData->payment_error_reason = $payment_status === 'paid' ? '' : esc_html__('Payment failed', 'tutor-bkash');
+				$returnData->payment_error_reason = $payment_status === 'paid' ? '' : esc_html__('Payment failed', 'finerspay');
 
 				// Calculate fees and earnings - use amount from query response or payload
 				$amount = 0.0;
@@ -423,7 +453,7 @@ class Bkash extends BasePayment {
 					$returnData->payment_status = $payment_status;
 					$returnData->transaction_id = $paymentID;
 					$returnData->payment_payload = wp_json_encode($post_data);
-					$returnData->payment_error_reason = $payment_status === 'paid' ? '' : esc_html__('Payment verification pending', 'tutor-bkash');
+					$returnData->payment_error_reason = $payment_status === 'paid' ? '' : esc_html__('Payment verification pending', 'finerspay');
 
 					$amount = isset($post_data['amount']) ? floatval($post_data['amount']) : 0.0;
 					$returnData->fees = 0;
@@ -432,7 +462,7 @@ class Bkash extends BasePayment {
 				} else {
 					// Query failed and no valid payload fallback
 					$returnData->payment_status = 'failed';
-					$returnData->payment_error_reason = esc_html__('Transaction validation with bKash API failed.', 'tutor-bkash');
+					$returnData->payment_error_reason = esc_html__('Transaction validation with bKash API failed.', 'finerspay');
 				}
 			}
 
@@ -442,7 +472,7 @@ class Bkash extends BasePayment {
 			// Return failed status instead of throwing
 			$returnData->payment_status = 'failed';
 			$error_message = $error->getMessage();
-			$returnData->payment_error_reason = esc_html__('Error processing payment: ', 'tutor-bkash') . esc_html($error_message);
+			$returnData->payment_error_reason = esc_html__('Error processing payment: ', 'finerspay') . esc_html($error_message);
 			return $returnData;
 		}
 	}

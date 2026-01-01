@@ -1,8 +1,8 @@
-=== Tutor bKash ===
-Contributors: saifullahsiddique - S. Saif
+=== FinersPay ===
+Contributors: adefiners, saifullahsiddique
 Tags: tutor, lms, bkash, payment, gateway
 Requires at least: 5.3
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.4
 Stable tag: 1.0.0
 License: GPLv2 or later
@@ -163,7 +163,7 @@ Initial release of bKash payment gateway for Tutor LMS.
 
 == Support ==
 
-For plugin issues: [GitHub Issues](https://github.com/asmsaiff/tutor-bkash/issues)
+For plugin issues: [GitHub Issues](https://github.com/asmsaiff/finerspay/issues)
 For bKash Merchant API: Contact [support@bkash.com](mailto:support@bkash.com) or [Apply Here](https://www.bkash.com/en/business/merchant)
 For Tutor LMS: Contact [Tutor LMS Support](https://tutorlms.com/support)
 

@@ -6,7 +6,9 @@
  * @since 1.0.0
  */
 
-namespace TutorBkash;
+namespace FinersPay;
+
+defined('ABSPATH') || exit;
 
 /**
  * Init class
@@ -40,7 +42,7 @@ final class Init {
     public function __construct() {
         add_filter('tutor_gateways_with_class', [self::class,'payment_gateways_with_ref'], 10, 2);
         add_filter('tutor_payment_gateways_with_class', [self::class,'add_payment_gateways']);
-        add_filter('tutor_payment_gateways', [$this, 'add_tutor_bkash_payment_method'], 100);
+        add_filter('tutor_payment_gateways', [$this, 'add_finerspay_payment_method'], 100);
     }
 
     /**
@@ -93,59 +95,59 @@ final class Init {
      *
      * @return array Modified payment methods array with bKash configuration added.
      */
-    public function add_tutor_bkash_payment_method(array $methods): array {
+    public function add_finerspay_payment_method(array $methods): array {
         $bkash_payment_method = [
             'name' => 'bkash',
-            'label' => esc_html__('bKash', 'tutor-bkash'),
+            'label' => esc_html__('bKash', 'finerspay'),
             'is_installed' => true,
             'is_active' => true,
-            'icon' => TUTOR_BKASH_URL . 'assets/bkash-logo.png',
+            'icon' => finerspay_URL . 'assets/bkash-logo.png',
             'support_subscription' => true,
             'fields' => [
                     [
                         'name' => 'environment',
                         'type' => 'select',
-                        'label' => esc_html__('Environment', 'tutor-bkash'),
+                        'label' => esc_html__('Environment', 'finerspay'),
                         'options' => [
-                            'sandbox' => esc_html__('Sandbox', 'tutor-bkash'),
-                            'live' => esc_html__('Live', 'tutor-bkash'),
+                            'sandbox' => esc_html__('Sandbox', 'finerspay'),
+                            'live' => esc_html__('Live', 'finerspay'),
                         ],
                         'value' => 'sandbox',
                     ],
                     [
                         'name' => 'username',
                         'type' => 'text',
-                        'label' => esc_html__('Merchant Username', 'tutor-bkash'),
+                        'label' => esc_html__('Merchant Username', 'finerspay'),
                         'value' => '',
-                        'desc' => esc_html__('Your bKash merchant username', 'tutor-bkash'),
+                        'desc' => esc_html__('Your bKash merchant username', 'finerspay'),
                     ],
                     [
                         'name' => 'password',
                         'type' => 'secret_key',
-                        'label' => esc_html__('Merchant Password', 'tutor-bkash'),
+                        'label' => esc_html__('Merchant Password', 'finerspay'),
                         'value' => '',
-                        'desc' => esc_html__('Your bKash merchant password', 'tutor-bkash'),
+                        'desc' => esc_html__('Your bKash merchant password', 'finerspay'),
                     ],
                     [
                         'name' => 'app_key',
                         'type' => 'text',
-                        'label' => esc_html__('App Key', 'tutor-bkash'),
+                        'label' => esc_html__('App Key', 'finerspay'),
                         'value' => '',
-                        'desc' => esc_html__('Your bKash App Key', 'tutor-bkash'),
+                        'desc' => esc_html__('Your bKash App Key', 'finerspay'),
                     ],
                     [
                         'name' => 'app_secret',
                         'type' => 'secret_key',
-                        'label' => esc_html__('App Secret', 'tutor-bkash'),
+                        'label' => esc_html__('App Secret', 'finerspay'),
                         'value' => '',
-                        'desc' => esc_html__('Your bKash App Secret', 'tutor-bkash'),
+                        'desc' => esc_html__('Your bKash App Secret', 'finerspay'),
                     ],
                     [
                         'name' => 'webhook_url',
                         'type' => 'webhook_url',
-                        'label' => esc_html__('Webhook URL', 'tutor-bkash'),
+                        'label' => esc_html__('Webhook URL', 'finerspay'),
                         'value' => '',
-                        'desc' => esc_html__('Copy this URL and configure it in your bKash merchant panel', 'tutor-bkash'),
+                        'desc' => esc_html__('Copy this URL and configure it in your bKash merchant panel', 'finerspay'),
                     ],
                 ],
         ];
@@ -153,5 +155,4 @@ final class Init {
         $methods[] = $bkash_payment_method;
         return $methods;
     }
-
 }

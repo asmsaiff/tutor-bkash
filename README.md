@@ -1,4 +1,4 @@
-# Tutor bKash Payment Gateway
+# FinersPay - bKash Payment Gateway for Tutor LMS
 
 bKash payment gateway integration for Tutor LMS. This plugin enables one-time course payments through bKash Tokenized Checkout.
 
@@ -131,8 +131,8 @@ Please verify that you are using the correct API version before going live.
 ## File Structure
 
 ```
-tutor-bkash/
-├── tutor-bkash.php           # Main plugin file (entry point with plugin headers)
+finerspay/
+├── finerspay.php           # Main plugin file (entry point with plugin headers)
 ├── composer.json             # Composer autoload configuration
 ├── composer.lock             # Composer dependency lock file
 ├── README.md                 # GitHub/Documentation readme
@@ -149,7 +149,7 @@ tutor-bkash/
 │   └── RewriteRules.php      # Custom URL rewrite rules for API callbacks
 │
 ├── languages/                # Localization files
-│   └── tutor-bkash.pot       # Base translation template file
+│   └── finerspay.pot       # Base translation template file
 │
 ├── payments/                 # Core payment logic
 │   └── Bkash.php             # Handles payment creation, validation, and processing
@@ -163,14 +163,14 @@ This plugin supports internationalization and is translation-ready. All user-fac
 
 ### For Translators
 
-1. Use the `languages/tutor-bkash.pot` file as a template
+1. Use the `languages/finerspay.pot` file as a template
 2. Create language-specific `.po` files using tools like Poedit or Loco Translate
 3. Compile `.mo` files and place them in the `languages/` directory
-4. File naming: `tutor-bkash-{locale}.mo` (e.g., `tutor-bkash-bn_BD.mo` for Bengali)
+4. File naming: `finerspay-{locale}.mo` (e.g., `finerspay-bn_BD.mo` for Bengali)
 
 ### Text Domain
 
-- **Text Domain:** `tutor-bkash`
+- **Text Domain:** `finerspay`
 - **Domain Path:** `/languages/`
 
 ### Available Languages
