@@ -14,7 +14,7 @@
  * - Comprehensive error handling and logging
  *
  * @author S. Saif <https://github.com/asmsaiff>
- * @since 1.0.0
+ * @since 1.0.1
  */
 
 namespace Payments\Bkash;
@@ -33,7 +33,7 @@ use Ollyo\PaymentHub\Core\Payment\BasePayment;
  * It implements the complete payment lifecycle from initiation to completion,
  * including validation and webhook processing.
  *
- * @since 1.0.0
+ * @since 1.0.1
  */
 class Bkash extends BasePayment {
 	/**

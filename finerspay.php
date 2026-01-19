@@ -2,7 +2,7 @@
     /**
      * Plugin Name:     FinersPay
      * Description:     bKash payment gateway integration for Tutor LMS (Free & Pro). Accept online payments directly within your Tutor LMS-powered site using bKash Tokenized Checkout.
-     * Version:         1.0.0
+     * Version:         1.0.1
      * Author:          S. Saif
      * Author URI:      https://github.com/asmsaiff
      * License:         GPLv2 or later
@@ -31,14 +31,14 @@
      *
      * Handles plugin initialization and core functionality.
      *
-     * @since 1.0.0
+     * @since 1.0.1
      */
     final class finerspay_Plugin {
 
         /**
          * Single instance of the plugin
          *
-         * @since 1.0.0
+         * @since 1.0.1
          * @var finerspay_Plugin|null
          */
         private static $instance = null;
@@ -46,7 +46,7 @@
         /**
          * Get singleton instance
          *
-         * @since 1.0.0
+         * @since 1.0.1
          * @return finerspay_Plugin
          */
         public static function get_instance(): self {
@@ -59,7 +59,7 @@
         /**
          * Constructor - Initialize the plugin
          *
-         * @since 1.0.0
+         * @since 1.0.1
          */
         private function __construct() {
             $this->init();
@@ -68,7 +68,7 @@
         /**
          * Initialize the plugin
          *
-         * @since 1.0.0
+         * @since 1.0.1
          */
         private function init(): void {
             $this->load_dependencies();
@@ -79,7 +79,7 @@
         /**
          * Load plugin dependencies
          *
-         * @since 1.0.0
+         * @since 1.0.1
          */
         private function load_dependencies(): void {
             require_once __DIR__ . '/vendor/autoload.php';
@@ -88,10 +88,10 @@
         /**
          * Define plugin constants
          *
-         * @since 1.0.0
+         * @since 1.0.1
          */
         private function define_constants(): void {
-            define('finerspay_VERSION', '1.0.0');
+            define('finerspay_VERSION', '1.0.1');
             define('finerspay_URL', plugin_dir_url(__FILE__));
             define('finerspay_PATH', plugin_dir_path(__FILE__));
         }
@@ -99,7 +99,7 @@
         /**
          * Initialize WordPress hooks
          *
-         * @since 1.0.0
+         * @since 1.0.1
          */
         private function init_hooks(): void {
             add_action('plugins_loaded', [$this, 'init_gateway'], 100);
@@ -111,7 +111,7 @@
         /**
          * Initialize the bKash payment gateway
          *
-         * @since 1.0.0
+         * @since 1.0.1
          */
         public function init_gateway(): void {
             //works with the free version of Tutor LMS

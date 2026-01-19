@@ -7,7 +7,7 @@
  *
  * @author S. Saif <https://github.com/asmsaiff>
  * @package FinersPay
- * @since 1.0.0
+ * @since 1.0.1
  */
 
 namespace FinersPay;
@@ -19,7 +19,7 @@ class ExecutePayment {
      * Processes the payment execution request from bKash, validates the transaction,
      * and notifies Tutor LMS webhook to update the order status.
      *
-     * @since 1.0.0
+     * @since 1.0.1
      */
     public static function finerspay_handle_payment_execution() {
         global $wp_query;

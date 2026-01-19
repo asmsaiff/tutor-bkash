@@ -4,7 +4,7 @@ Tags: tutor, lms, bkash, payment, gateway
 Requires at least: 5.3
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -149,7 +149,7 @@ The plugin is developed and maintained independently by the open-source communit
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.1 =
 * Initial release
 * One-time and subscription payment support
 * Sandbox and Live environments
@@ -158,7 +158,7 @@ The plugin is developed and maintained independently by the open-source communit
 
 == Upgrade Notice ==
 
-= 1.0.0 =
+= 1.0.1 =
 Initial release of bKash payment gateway for Tutor LMS.
 
 == Support ==

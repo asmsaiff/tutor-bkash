@@ -3,7 +3,7 @@
  * bKash Configuration class
  *
  * @author S. Saif <https://github.com/asmsaiff>
- * @since 1.0.0
+ * @since 1.0.1
  */
 
 namespace FinersPay;
@@ -19,14 +19,14 @@ use Ollyo\PaymentHub\Contracts\Payment\ConfigContract;
  * This class is used to manage the configuration settings for the "bKash" gateway. It extends the `BaseConfig`
  * class and implements the `ConfigContract` interface.
  *
- * @since 1.0.0
+ * @since 1.0.1
  */
 class BkashConfig extends BaseConfig implements ConfigContract {
 
 	/**
 	 * Configuration keys and their types for bKash gateway
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 */
 	private const CONFIG_KEYS = [
 		'environment' => 'select',
@@ -45,7 +45,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
     /**
 	 * Stores the environment setting for the payment gateway, such as 'sandbox' or 'live'.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @var string
 	 */
@@ -54,7 +54,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	/**
 	 * Stores the bKash Username.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @var string
 	 */
@@ -63,7 +63,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	/**
 	 * Stores the bKash Password.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @var string
 	 */
@@ -72,7 +72,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	/**
 	 * Stores the bKash App Key.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @var string
 	 */
@@ -81,7 +81,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	/**
 	 * Stores the bKash App Secret.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @var string
 	 */
@@ -90,7 +90,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	/**
 	 * The name of the payment gateway.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @var string
 	 */
@@ -104,7 +104,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	 * Excludes webhook_url as it's handled separately by the PaymentUrlsTrait.
 	 * Handles new installations gracefully by using empty array if settings don't exist yet.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 */
 	public function __construct() {
 		parent::__construct();
@@ -139,7 +139,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	 * Retrieves field values without additional sanitization to preserve
 	 * special characters that were already validated during save.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @param array  $fields The fields array from Tutor settings
 	 * @param string $key    The field key to extract
@@ -171,7 +171,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	/**
 	 * Retrieves the mode of the bKash payment gateway.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @return string The mode of the payment gateway ('sandbox' or 'live').
 	 */
@@ -182,7 +182,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	/**
 	 * Retrieves the Username for the bKash payment gateway.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @return string The configured Username.
 	 */
@@ -193,7 +193,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	/**
 	 * Retrieves the Password for the bKash payment gateway.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @return string The configured Password.
 	 */
@@ -204,7 +204,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	/**
 	 * Retrieves the App Key for the bKash payment gateway.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @return string The configured App Key.
 	 */
@@ -215,7 +215,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	/**
 	 * Retrieves the App Secret for the bKash payment gateway.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @return string The configured App Secret.
 	 */
@@ -226,7 +226,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	/**
 	 * Get the bKash API domain based on the configured environment.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @return string The appropriate API domain URL for sandbox or live environment.
 	 */
@@ -242,7 +242,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	 * Verifies that all credentials are configured
 	 * and not empty, which are required for bKash API communication.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @return bool True if all credentials are configured, false otherwise.
 	 */
@@ -256,7 +256,7 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	 * This method extends the parent class configuration and adds bKash-specific
 	 * settings including credentials and API domain for use by the payment gateway.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @return void
 	 */

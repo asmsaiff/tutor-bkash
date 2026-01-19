@@ -3,7 +3,7 @@
  * Init class
  *
  * @author S. Saif <https://github.com/asmsaiff>
- * @since 1.0.0
+ * @since 1.0.1
  */
 
 namespace FinersPay;
@@ -20,7 +20,7 @@ final class Init {
     /**
      * bKash gateway configuration array
      *
-     * @since 1.0.0
+     * @since 1.0.1
      */
     private const BKASH_GATEWAY_CONFIG = [
         'bkash' => [
@@ -37,7 +37,7 @@ final class Init {
      * - tutor_payment_gateways_with_class: Adds gateway to checkout integration
      * - tutor_payment_gateways: Adds payment method settings to Tutor admin
      *
-     * @since 1.0.0
+     * @since 1.0.1
      */
     public function __construct() {
         add_filter('tutor_gateways_with_class', [self::class,'payment_gateways_with_ref'], 10, 2);
@@ -51,7 +51,7 @@ final class Init {
      * Used by the tutor_gateways_with_class filter to provide class references
      * for bKash gateway when processing webhook notifications.
      *
-     * @since 1.0.0
+     * @since 1.0.1
      *
      * @param array  $value   Existing gateway class references array.
      * @param string $gateway Gateway identifier being requested.
@@ -72,7 +72,7 @@ final class Init {
      * Used by the tutor_payment_gateways_with_class filter to register
      * bKash gateway classes for checkout processing.
      *
-     * @since 1.0.0
+     * @since 1.0.1
      *
      * @param array $gateways Existing payment gateways array.
      *
@@ -89,7 +89,7 @@ final class Init {
      * including all required fields (environment, credentials, webhook URL)
      * and adds it to Tutor's payment methods list for admin configuration.
      *
-     * @since 1.0.0
+     * @since 1.0.1
      *
      * @param array $methods Existing Tutor payment methods array.
      *

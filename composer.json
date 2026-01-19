@@ -1,5 +1,5 @@
 {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "name": "asmsaiff/finerspay",
     "description": "bKash payment gateway integration for Tutor LMS",
     "type": "wordpress-plugin",

@@ -7,7 +7,7 @@
  * within the Tutor e-commerce ecosystem.
  *
  * @author S. Saif<https://github.com/asmsaiff>
- * @since 1.0.0
+ * @since 1.0.1
  */
 
 namespace FinersPay;
@@ -22,7 +22,7 @@ use Tutor\PaymentGateways\GatewayBase;
  * for Tutor LMS. It defines the gateway's directory structure, payment class, and
  * configuration class for seamless integration with the Tutor payment system.
  *
- * @since 1.0.0
+ * @since 1.0.1
  */
 class BkashGateway extends GatewayBase {
 
@@ -32,7 +32,7 @@ class BkashGateway extends GatewayBase {
 	 * This method returns the directory name where bKash payment gateway
 	 * source files are located within the payments directory structure.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @return string The directory name ('Bkash').
 	 */
@@ -46,7 +46,7 @@ class BkashGateway extends GatewayBase {
 	 * Returns the fully qualified class name of the bKash payment processor
 	 * from the PaymentHub library, used for handling payment transactions.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @return string The bKash payment class name.
 	 */
@@ -60,7 +60,7 @@ class BkashGateway extends GatewayBase {
 	 * Returns the fully qualified class name of the bKash configuration class
 	 * that manages gateway settings, credentials, and environment configuration.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @return string The bKash configuration class name.
 	 */
@@ -74,7 +74,7 @@ class BkashGateway extends GatewayBase {
 	 * Returns an empty string as bKash uses Composer autoloading
 	 * and doesn't require a custom autoload file.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @return string Empty string (Composer autoloading is used).
 	 */
