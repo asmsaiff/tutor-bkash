@@ -83,10 +83,6 @@
          */
         private function load_dependencies(): void {
             require_once __DIR__ . '/vendor/autoload.php';
-
-            if (!function_exists('is_plugin_active')) {
-                require_once ABSPATH . 'wp-admin/includes/plugin.php';
-            }
         }
 
         /**

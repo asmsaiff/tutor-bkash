@@ -236,13 +236,17 @@ class Bkash extends BasePayment {
 			$payerReference = ($this->config->get('mode') === 'live') ? get_bloginfo('name') : ($this->config->get('sandbox_wallet') ?? 'sandbox');
 			$merchantAssociationInfo = $this->config->get('merchant_association_info') ?? 'MI05MID54RF09123456One';
 
+			// Generate nonce for payment execution security
+			$nonce = wp_create_nonce('finerspay_execute_payment');
+
 			$request_data = [
 				'mode' => $this->config->get('mode') === 'live' ? '0011' : '0010',
 				'payerReference' => $payerReference,
 				// Use a query parameter based callback so we don't need a custom rewrite rule.
 				// bKash will append its own params (status, paymentID) to this URL.
 				'callbackURL' => $base_url
-                    . '/execute-payment?token=' . $this->accessToken
+                    . '/execute-payment?nonce=' . $nonce
+                    . '&token=' . $this->accessToken
                     . '&xak=' . $_bkash_app_key
                     . '&base_url=' . $base_url
                     . '&api_domain=' . urlencode($this->client['api_domain'])
@@ -258,9 +262,6 @@ class Bkash extends BasePayment {
 			];
 
 			$response = $this->callBkashApi($apiUrl, $request_data);
-
-            session_start();
-            $_SESSION["bkash_payment_info"] = $response;
 
 			if ($response && isset($response['statusCode']) && $response['statusCode'] === '0000') {
 				if (isset($response['paymentID']) && !empty($response['bkashURL'])) {

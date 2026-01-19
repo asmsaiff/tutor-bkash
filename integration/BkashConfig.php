@@ -136,6 +136,9 @@ class BkashConfig extends BaseConfig implements ConfigContract {
 	/**
 	 * Extract field value from Tutor's nested fields array format.
 	 *
+	 * Retrieves field values without additional sanitization to preserve
+	 * special characters that were already validated during save.
+	 *
 	 * @since 1.0.0
 	 *
 	 * @param array  $fields The fields array from Tutor settings

@@ -24,44 +24,35 @@ class ExecutePayment {
     public static function finerspay_handle_payment_execution() {
         global $wp_query;
 
-        // Start session if not already started
-        if ( ! session_id() ) {
-            session_start();
-        }
-
         // Check if this is the execute_payment route
         if ( ! isset( $wp_query->query_vars['execute_payment'] ) ) {
             return;
         }
 
-        // Sanitize and retrieve GET parameters
-        // Note: Nonce verification is not applicable here as this handles external payment gateway redirects from bKash.
-        // The data comes from bKash payment gateway callback URL, not from WordPress forms.
-        $payment_id = '';
-        if ( isset( $_SESSION['bkash_payment_info']['paymentID'] ) && ! empty( $_SESSION['bkash_payment_info']['paymentID'] ) ) {
-            $payment_id = sanitize_text_field( $_SESSION['bkash_payment_info']['paymentID'] );
-        }
-        // Fallback to GET param if session not available
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- External payment gateway callback, nonce not applicable.
-        if ( empty( $payment_id ) && isset( $_GET['paymentID'] ) ) {
-            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- External payment gateway callback, nonce not applicable.
-            $payment_id = sanitize_text_field( wp_unslash( $_GET['paymentID'] ) );
+        // Verify nonce for security
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verification required for payment execution.
+        if ( ! isset( $_GET['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'finerspay_execute_payment' ) ) {
+            wp_die( esc_html__( 'Security check failed', 'finerspay' ) );
         }
 
+        // Sanitize and retrieve GET parameters
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce already verified above.
+        $payment_id = isset( $_GET['paymentID'] ) ? sanitize_text_field( wp_unslash( $_GET['paymentID'] ) ) : '';
+
         // Sanitize all GET parameters from external payment gateway callback
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- External payment gateway callback, nonce not applicable.
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce already verified above.
         $token       = isset( $_GET['token'] ) ? sanitize_text_field( wp_unslash( $_GET['token'] ) ) : '';
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- External payment gateway callback, nonce not applicable.
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce already verified above.
         $x_app_key   = isset( $_GET['xak'] ) ? sanitize_text_field( wp_unslash( $_GET['xak'] ) ) : '';
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- External payment gateway callback, nonce not applicable.
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce already verified above.
         $success_url = isset( $_GET['success_url'] ) ? esc_url_raw( wp_unslash( $_GET['success_url'] ) ) : '';
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- External payment gateway callback, nonce not applicable.
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce already verified above.
         $cancel_url  = isset( $_GET['cancel_url'] ) ? esc_url_raw( wp_unslash( $_GET['cancel_url'] ) ) : '';
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- External payment gateway callback, nonce not applicable.
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce already verified above.
         $webhook_url = isset( $_GET['webhook_url'] ) ? esc_url_raw( wp_unslash( $_GET['webhook_url'] ) ) : '';
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- External payment gateway callback, nonce not applicable.
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce already verified above.
         $order_id    = isset( $_GET['order_id'] ) ? absint( $_GET['order_id'] ) : 0;
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- External payment gateway callback, nonce not applicable.
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce already verified above.
         $api_domain  = isset( $_GET['api_domain'] ) ? esc_url_raw( wp_unslash( $_GET['api_domain'] ) ) : '';
 
         // Validate required parameters
