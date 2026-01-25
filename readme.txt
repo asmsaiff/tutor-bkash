@@ -1,4 +1,4 @@
-=== FinersPay ===
+=== FinersPay - bKash Payment Gateway for Tutor LMS ===
 Contributors: adefiners, saifullahsiddique
 Tags: tutor, lms, bkash, payment, gateway
 Requires at least: 5.3

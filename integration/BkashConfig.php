@@ -22,7 +22,6 @@ use Ollyo\PaymentHub\Contracts\Payment\ConfigContract;
  * @since 1.0.1
  */
 class BkashConfig extends BaseConfig implements ConfigContract {
-
 	/**
 	 * Configuration keys and their types for bKash gateway
 	 *

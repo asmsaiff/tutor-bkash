@@ -112,7 +112,6 @@ class Bkash extends BasePayment {
 				'api_domain' => $this->config->get('api_domain'),
 			];
 		} catch (Throwable $error) {
-
 			throw $error;
 		}
 	}
@@ -307,13 +306,10 @@ class Bkash extends BasePayment {
             'Content-Type' => 'application/json',
         ]);
 
-
-
 		if ($response && isset($response['id_token'])) {
 
 			return $response['id_token'];
 		}
-
 
 		return null;
 	}
@@ -346,8 +342,6 @@ class Bkash extends BasePayment {
 
 		$headers = array_merge($defaultHeaders, $headers);
 
-
-
 		$args = [
 			'method' => 'POST',
 			'timeout' => 60,
@@ -372,8 +366,6 @@ class Bkash extends BasePayment {
 		$http_code = wp_remote_retrieve_response_code($response);
 		$body = wp_remote_retrieve_body($response);
         $decoded = json_decode($body, true);
-
-
 
         return is_array($decoded) ? $decoded : ['statusCode' => '9999', 'statusMessage' => 'Invalid JSON response', 'raw_body' => $body];
 	}
@@ -442,7 +434,6 @@ class Bkash extends BasePayment {
 				$returnData->fees = 0; // bKash fees would be handled separately
 				$returnData->earnings = number_format($amount, 2, '.', '');
 				$returnData->tax_amount = 0;
-
 			} else {
 				// Query failed - check if we have statusCode in payload as fallback
 				if (isset($post_data['statusCode']) && $post_data['statusCode'] === '0000' && isset($post_data['transactionStatus'])) {
@@ -509,7 +500,7 @@ class Bkash extends BasePayment {
 	 * @param string $paymentID Payment ID
 	 * @return array|null Payment status or null on failure
 	 */
-	private function queryPayment(string $paymentID): ?array {
+	private function queryPayment(string $paymentID): ? array {
 		// Get grant token
 		$this->accessToken = $this->getGrantToken();
 

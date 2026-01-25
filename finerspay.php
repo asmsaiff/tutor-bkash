@@ -1,7 +1,7 @@
 <?php
     /**
-     * Plugin Name:     FinersPay
-     * Description:     bKash payment gateway integration for Tutor LMS (Free & Pro). Accept online payments directly within your Tutor LMS-powered site using bKash Tokenized Checkout.
+     * Plugin Name:     FinersPay - bKash Payment Gateway for Tutor LMS
+     * Description:     Enable fast and secure bKash payments for Tutor LMS & let students pay instantly using bKash.
      * Version:         1.0.1
      * Author:          S. Saif
      * Author URI:      https://github.com/asmsaiff
@@ -34,7 +34,6 @@
      * @since 1.0.1
      */
     final class finerspay_Plugin {
-
         /**
          * Single instance of the plugin
          *

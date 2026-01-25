@@ -1,10 +1,10 @@
 # FinersPay - bKash Payment Gateway for Tutor LMS
 
-bKash payment gateway integration for Tutor LMS. This plugin enables one-time course payments through bKash Tokenized Checkout.
+Enable fast and secure bKash payments for Tutor LMS & let students pay instantly using bKash.
 
 ## Features
 
-✅ One-time and subscription payments for course purchases\
+✅ One-time and subscription (manual) payments for course purchases\
 ✅ Tokenized Checkout for secure payment processing\
 ✅ Sandbox and Live environment support\
 ✅ IPN (Instant Payment Notification) integration\
